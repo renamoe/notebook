@@ -50,3 +50,5 @@
 正着和倒着分别建 AC 自动机进行统计。
 
 ### \*F. You Are Given Some Letters...
+
+有点细节没懂
