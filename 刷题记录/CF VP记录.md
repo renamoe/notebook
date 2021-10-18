@@ -51,4 +51,75 @@
 
 ### \*F. You Are Given Some Letters...
 
-有点细节没懂
+设周期长度为 $k$，$\texttt a$, $\texttt b$ 分别出现 $a+b=k$ 次，假设 $\texttt a$, $\texttt b$ 个数量足够，一定可以构造出周期不为 $k$ 的约数的方案。
+
+设周期循环 $\lfloor\frac{A+B}{k}\rfloor=p$ 次，$a,b$ 合法的条件为
+
+$$
+\begin{aligned}
+p\times a\le A\le (p+1)\times a\\
+p\times b\le B\le (p+1)\times b\\
+\end{aligned}
+$$
+
+注意是 $\le$，暂时只关心 $a,b$ 以及 $k$ 的合法性，不考虑是否算重。
+
+化简为限制 $a,b$ 的式子，
+
+$$
+\begin{aligned}
+\left\lceil\frac{A}{p+1}\right\rceil\le a\le \left\lfloor\frac{A}{p}\right\rfloor\\
+\left\lceil\frac{B}{p+1}\right\rceil\le b\le \left\lfloor\frac{B}{p}\right\rfloor\\
+\end{aligned}
+$$
+
+那么枚举 $p$，可以得到 $a,b$ 的合法范围。
+
+对于每个 $p$，$k$ 的限制也是一个区间，可以整除分块，复杂度 $\mathcal O(\sqrt{A+B})$。
+
+
+## CF749
+
+### A. Windblume Ode
+
+如果是质数（奇数），说明 $a$ 序列中至少存在一个奇数，减去它变成偶数就好了。
+
+### B. Omkar and Heavenly Tree 
+
+最好是让 $a,c$ 尽量接近，可以想到建一个虚点为根，造一个菊花图。
+
+重要性质是 $m < n$，那么存在至少一个点不受任何“不能在两点路径上的限制”，令其为根。
+
+### C. Omkar and Determination 
+
+如果一个格子上方和左方存在可退出的格子，该格子能否可退出和格子是否为填充，可以唯一对应。
+
+如果上方和左方都不可退出，该格子无论是否填充都会呈现为不可退出。
+
+那么只要寻找子矩阵中是否存在一个格子左方和上方都为 $\texttt X$。
+
+### D. Omkar and the Meaning of Life 
+
+一个容易想到的构造是让所有数增加 $k$，然后让 $p_i$ 增加 $k-1$，那么如果 $p_i-1$ 在 $p_i$ 前面，可以找到 $p_i-1$ 的位置。
+
+由于 smallest 的限制，我们只操作最后一个元素。让所有数都增加 $n$，$p_n$ 增加 $n-k$，那么可以找到 $p_n-k$ 在哪里，直到找不到便确定了 $p_n$ 是多少。往上也是类似。
+
+### E. Moment of Bloom 
+
+放到树上是非常好做的，那么考虑转化到树上。
+
+把边的权值放到相邻的两个点上，每次操作一定只会改变 $x,y$ 两个点的奇偶性。如果最后所有点都为偶数，那么一定有解。只要让任意两点的路径唯一就能满足，那么从图上随便拎出一个生成树。
+
+如果最后不满足，那么为奇数的点一定有偶数个，两两配对即可。我当时想的麻烦，在树上做了遍 DP，也是可以的。
+
+### \*F. Defender of Childhood Dreams 
+
+$k$ 个点，任意一条路径长度不超过 $k-1$，那么可以都染成一种颜色。
+
+扩展到 $n$ 个点，每 $k$ 个点分为一段，那么跨过段与段之间的路径会超过 $k$ 条边，那么段与段之间的边染成另一种颜色。于是转化为 $\left\lceil\frac{n}{k}\right\rceil$ 个点的子问题。
+
+颜色相同的路径一定在同一层的同一段，长度至多为 $k-1$，同时是最优。
+
+答案也就是 $\lceil\log_kn\rceil$，按上述方法构造即可。
+
+G,H,I 题随缘补题。
