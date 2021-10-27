@@ -151,3 +151,25 @@ $x$ 各质因子独立，分开计算，只考虑一个质因子的次数，转�
 
 [code(1)](https://gitee.com/renamoe/pastebin/blob/master/S2OJ991.cpp)
 
+## S2OJ#1133. 【2021NOIP多校day6】tree
+
+[link](https://sjzezoj.com/problem/1133)
+
+考虑在一个直径的中点处统计，因为这样只需要限制树的高度。
+
+DP 三个函数：
+
+- $f_{i,d}$，$i$ 个点高度不超过 $d$ 的树方案数；
+- $g_{i,d}$，$i$ 个点高度不超过 $d$ 的森林方案数；
+- $h_{i,d}$，$i$ 个点高度恰好为 $d$ 的树方案数；
+
+转移就是考虑各种背包、有标号集合的合并。
+
+然后讨论一下，
+
+- 若直径 $D$ 为偶数，那么就要求有至少两个子树高度为 $D/2-1$，容积掉只有一棵的情况；
+- 若直径 $D$ 为奇数，直径最中间是一条边，两边子树高度均为 $(D-1)/2$，直接合并有标号集合进行统计。
+
+复杂度 $\mathcal O(n^3)$。
+
+[code](https://gitee.com/renamoe/pastebin/blob/master/S2OJ1133.cpp)
