@@ -3,6 +3,8 @@
 
 ## EDU69
 
+[link](https://codeforces.com/contest/1197)
+
 ### C. Array Splitting 
 
 相邻数连带权边，转化为去掉权值和最大的 $k-1$ 条边。
@@ -32,6 +34,8 @@
 对于多次的矩阵快速幂，利用向量乘矩阵是 $\mathcal O(n^2)$ 的，预处理转移矩阵的 $2$ 的次幂，每次用向量直接去乘，复杂度降到 $\mathcal O(64^2n\log a+64^3n)$。
 
 ## EDU70
+
+[link](https://codeforces.com/contest/1202)
 
 ### A. You Are Given Two Binary Strings...
 
@@ -88,6 +92,8 @@ $$
 
 ## CF749
 
+[link](https://codeforces.com/contest/1586)
+
 ### A. Windblume Ode
 
 如果是质数（奇数），说明 $a$ 序列中至少存在一个奇数，减去它变成偶数就好了。
@@ -133,6 +139,8 @@ $k$ 个点，任意一条路径长度不超过 $k-1$，那么可以都染成一�
 G,H,I 题随缘补题。
 
 ## EDU71
+
+[link](https://codeforces.com/contest/1207)
 
 ### D. Number Of Permutations
 
@@ -217,6 +225,8 @@ dfs 时当前在 AC 自动机上的节点会对 fail 树上它的所有祖先产
 那可以放到线段树上，两个序列都排序，从小到大增量修改。
 
 ## EDU73
+
+[link](https://codeforces.com/contest/1221)
 
 没什么精神，要反思一下。
 
