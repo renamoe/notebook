@@ -25,7 +25,7 @@
 
 正解还真就是 $\mathcal O(n^2)$ 暴力 + 卡常，不适合口胡，[写了一发](https://codeforces.com/contest/314/submission/134666984)。
 
-教训是要有梦想，适当对暴力卡常。
+出题人脑子有问题。不过教训是要有梦想，适当对暴力卡常。
 
 ## CF1045H. Self-exploration
 
