@@ -320,4 +320,10 @@ DP 需要记录在 $n$ 个串中分别匹配到的位置。因为这 $n$ 个位�
 
 具体实现需要处理一个子序列自动机，还要注意 DP 顺序。复杂度 $\mathcal O(|\Sigma|^2 2^n)$。
 
+## EDU74
 
+好颓啊，NOIP 前都做不动题。
+
+### \*D. AB-string
+
+### \*E. Keyboard Purchase
