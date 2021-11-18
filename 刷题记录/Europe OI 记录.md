@@ -66,3 +66,29 @@ $$
 
 [submission](https://loj.ac/s/1285084)
 
+## Luogu P4657 \[CEOI2017\]Chase
+
+[link](https://www.luogu.com.cn/problem/P4657)
+
+同一路径两个方向的价值不一样，树形 DP $f,g$ 分别表示向上走和向下走的答案，然后拼接。
+
+[code(2)](https://gitee.com/renamoe/pastebin/blob/master/LuoguP4657.cpp)
+
+## Luogu P4786 \[BalkanOI2018\]Election
+
+[link](https://www.luogu.com.cn/problem/P4786)
+
+最优的方案是，从左到右扫，如果前缀和 $< 0$ 就删去当前点；从右往左再做一遍。
+
+那么从左往右删去的点数也就是 $\min \mathrm{pre}_p$，从右往左删去的点数也就是 $\min \mathrm{suf}_q'=\min\{\mathrm{suf}_q-\min \mathrm{pre}_p+\min \mathrm{pre}_{p'< q}\}$。
+
+答案即为
+
+$$
+\begin{aligned}
+&\quad\min \mathrm{pre}_p+\min\{\mathrm{suf}_q-\min \mathrm{pre}_p+\min \mathrm{pre}_{p'< q}\}\\
+&=\min \mathrm{pre}_p+\min\mathrm{suf}_q\quad(p<q)
+\end{aligned}
+$$
+
+求最大子段和即可。

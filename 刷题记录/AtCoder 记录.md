@@ -1,3 +1,63 @@
+## ARC125D - Unique Subsequence
+
+[link](https://atcoder.jp/contests/arc125/tasks/arc125_d)
+
+DP 设 $f(i)$ 表示 $i$ 结尾的合法子序列个数。每个数字只在最后一次出现时的 $f$ 值是有效的。
+
+发现对于子序列 $a_{p_1}\dots a_{p_k}$，任意两个相邻的数 $a_{p_i}$ 和 $a_{p_{i+1}}$ 之间不能存在等于 $a_{p_i}$ 或 $a_{p_{i+1}}$ 的数，否则非法。
+
+那么转移时，强制每个数 $a_i$ 从上一次出现的位置 $\mathrm{last}(a_i)\dots i-1$ 转移，并且任何时刻每个数字只在最后一次出现的位置保留 $f$ 值，可以用树状数组维护。
+
+[submission(0)](https://atcoder.jp/contests/arc125/submissions/25514677)
+
+## ARC015D - Let's Play Nim
+
+[link](https://atcoder.jp/contests/arc105/tasks/arc105_d)
+
+考虑石子堆的异或和。$n$ 的奇偶性关系到最后做 nim 游戏的先后手，分类讨论：
+
+- $n$ 为偶数，先手加入石子堆时要尽量让异或和不为 $0$。如果石子堆可以两两配对相等的话，后手就可以复刻先手的动作从而先手必败。否则先手可以一直掌握最大的石子堆：每次挑最大的石子堆加入同一盘子，可以保证该盘严格大于其它石子堆和，异或和不为 $0$。
+- $n$ 为奇数，先手要尽量让异或和为 $0$。但是后手有同样的掌握最大石子堆的策略，先手必败。
+
+## ARC105E - Keep Graph Disconnected
+
+[link](https://atcoder.jp/contests/arc105/tasks/arc105_e)
+
+终止局面一定是 $n$ 个点分为两个连通块 $a,b$，总步数就是 $\frac{n\times (n-1)}{2}-a\times b-m$。
+
+总步数的奇偶性决定先后手的胜负。因为 $a+b=n$，我们讨论 $n$ 的奇偶性：
+
+- $n$ 为奇数：$a\times b$ 一定是偶数，总步数奇偶性直接确定。
+- $n$ 为偶数：考虑操作过程对 $a\times b$ 奇偶性的影响，设一开始 $1,n$ 所在连通块大小分别为 $x,y$，每次操作可以通过将奇数大小的连通块于其中之一连接，来改变奇偶性。
+  - $x,y$ 奇偶性相同：可以推出奇数大小连通块数为偶数个，操纵奇数大小连通块的策略会两两抵消，奇偶性不会改变；
+  - $x,y$ 奇偶性不同：可以推出奇数大小连通块数为奇数个，先手可以第一步通过操纵奇数大小连通块，将 $a\times b$ 变成奇数或者偶数，后续同上，先手必胜。
+
+[submission(1)](https://atcoder.jp/contests/arc105/submissions/25880016)
+
+## ARC066B - Xor Sum
+
+[link](https://atcoder.jp/contests/abc050/tasks/arc066_b)
+
+观察性质：因为异或是不进位加法，所以 $a+b=(a\operatorname{and} b)\times 2+(a\operatorname{xor}b)$，即 $u\le v$。我们对每个 $v$ 去统计可配对的 $u$。
+
+可以发现 $u,v$ 唯一对应一对 $a,b$ $(a < b)$。逐位考虑 $a,b$，最低位有 $(0,0),(0,1),(1,1)$ 三种情况，我们去掉其贡献，那么可以递归的考虑剩余位，这样只递归 $\log$ 次。
+
+具体地，我们可以列出转移，
+
+$$
+f(k)\gets \begin{cases}
+f(\frac k2)+f(\frac{k-2}{2})&2\mid k\\
+f(\frac{k-1}{2})&2\not\mid k
+\end{cases}
+$$
+
+然后我们对 $f$ 做前缀和，推式子可以得到非常简洁的式子：
+
+$$
+s(k)=s(\lfloor\frac{k}{2}\rfloor)+s(\lfloor\frac{k-1}{2}\rfloor)+s(\lfloor\frac{k-2}{2}\rfloor)
+$$
+
+
 ## ARC103D - Robot Arms
 
 [link](https://atcoder.jp/contests/arc103/tasks/arc103_b)
