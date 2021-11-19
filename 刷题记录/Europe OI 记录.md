@@ -1,5 +1,5 @@
 
-## P4801 [CCO 2015]饥饿的狐狸
+## Luogu P4801 [CCO 2015]饥饿的狐狸
 
 [link](https://www.luogu.com.cn/problem/P4801)
 
@@ -92,3 +92,23 @@ $$
 $$
 
 求最大子段和即可。
+
+## LOJ#2633. 「BalticOI 2011 Day1」宝藏与维京海盗 Treasures and Vikings
+
+[link](https://loj.ac/p/2633)
+
+贼船最早控制一行/列的时间，是他到达这一行/列某个格子最早的时间。然后“我”走的每一个格子，都要满足到达的时间比贼船控制该格的时间要早。
+
+两遍 BFS 即可，$\mathcal O(n^2)$。
+
+[submission(0)](https://loj.ac/s/1306664)
+
+## LOJ#2785. 「BalticOI 2016 Day2」交换
+
+[link](https://loj.ac/p/2785)
+
+可以到达一个位置的数只有 $\mathcal O(\log n)$ 个。尝试去维护每个位置可能的权值集合，由是否交换可以递归地表示为两个集合 $a_i$ 和 $\lfloor i/2\rfloor$ 位置的权值集合。
+
+建出二叉树，暴力的查询和标记选择即可，复杂度 $\mathcal O(n\log n)$。
+
+[submission(0)](https://loj.ac/s/1307031)
