@@ -112,3 +112,19 @@ $$
 建出二叉树，暴力的查询和标记选择即可，复杂度 $\mathcal O(n\log n)$。
 
 [submission(0)](https://loj.ac/s/1307031)
+
+## LOJ#3207. 「BalticOI 2019 Day2」奥运会
+
+[link](https://loj.ac/p/3207)
+
+最优的方案一定是，从第一场比赛中选最高的，然后从剩余的人中选第二场比赛最高的……
+
+第 $C$ 大可以考虑暴力搜索在搜索树上的过程，将所有剩余的状态按照与当前状态的 $\mathrm{LCP}$ 分类。钦定一个 $\mathrm{LCP}$ 和最优方案相同，第 $\mathrm{LCP}+1$ 个位置选次优，剩余部分依次选最优，注意 $\mathrm{LCP}$ 要 $\ge$ 当前状态与其父亲的 $\mathrm{LCP}$。由此产生 $\mathcal O(k)$ 个后继状态。
+
+用堆来做 BFS 取前 $C$ 个即是最优的 $C$ 个。因为是 BFS，需要 $\texttt{std::bitset<>}$ 记录可选点集合。复杂度 $\mathcal O(Ck(nk+\log(Ck)))$。
+
+至于为什么不重，假设当前状态已加入前 $i$ 列，分别为 $p_{1\dots i}$，那么把所有 $j$ 项权值 $\ge p_j$ 的点都会打上标记，后面选的任何一个点都不会代替前面的点。
+
+[submission(1)](https://loj.ac/s/1307697)
+
+

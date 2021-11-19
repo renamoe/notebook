@@ -117,3 +117,18 @@ $$
 对于限制，差分询问，枚举一个前缀相同然后容斥。细节很多，看代码。
 
 [submission(5)](https://codeforces.com/contest/1045/submission/135519676)
+
+## CF1574E. Coloring
+
+[link](https://codeforces.com/contest/1574/problem/E)
+
+如果有两个相邻的同色格子，会导致这两行/列确定，颜色交错排布。
+
+扩展一下，如果有一行的两个颜色相同的格子中间间隔偶数个格子，那么其他行的这两列也就确定了。
+
+如果不存在这样的行/列，确定第一列/行分别是什么也就确定了整个棋盘，贡献为 $2^{\text{空行/列个数}}$。
+
+一些情况下交错的局面会算上两次，要减去。
+
+[submission(0)](https://codeforces.com/contest/1574/submission/136115206)
+
