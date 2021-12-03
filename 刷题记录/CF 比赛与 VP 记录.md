@@ -380,3 +380,40 @@ DP 需要记录在 $n$ 个串中分别匹配到的位置。因为这 $n$ 个位�
 
 出现一次的和出现多次的两类答案卷起来即可。$\mathcal O(kn\log n+qk)$。
 
+
+## EDU76
+
+[link](https://codeforces.com/contest/1257)
+
+### D. Yet Another Monster Killing Problem
+
+每个人有两个属性，按 $s_i$ 排序，再按 $p_i$ 做单调栈可以删去无用的人。
+
+每次枚举取多少人，也就是按 $s_i$ 从从小到大枚举人，贪心找到能取最多的人。枚举的人数总和是 $\mathcal O(n)$ 的，复杂度是对的。
+
+### E. The Contest
+
+考虑最大化不动元素个数。
+
+如果只有两个人，可以枚举分界。而处理 $[0,n]$ 每个数作为上界的答案，可以递推，即每次加入的新的分界点，同时所有旧的分界点的答案会产生一样的变化。
+
+处理出来，第三个人也就容易考虑上了。
+
+### F. Make Them Similar
+
+不会做。折半，枚举 $x$，按所有数的 $\mathrm{popcount}$ 的相对大小作为键值进行拼接。
+
+### \*G. Divisor Set
+
+[sperner 定理](https://www.cnblogs.com/suncongbo/p/10321099.html) 在多重集上的拓展。
+
+假设每种质因子只有一个，按照 sperner 定理互不包含的子集族大小最大为 $\dbinom{n}{\lfloor \frac n 2\rfloor}$。确实也很好猜测，cf 官方题解竟然是在哈斯图上感性理解。
+
+拓展到多重集，就是大小为 $\lfloor \frac n 2\rfloor$ 的本质不同的子集数，用生成函数表示（SEQ 构造）就是
+
+$$
+[x^{\lfloor \frac n 2\rfloor}]\prod_p\left(\sum_{i=0}^{c_p}x^i\right)
+$$
+
+直接分治多项式乘法，复杂度 $\mathcal O(n\log^2n)$。
+
