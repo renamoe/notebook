@@ -22,7 +22,7 @@
           "type": "markdown",
           "state": {
             "file": "刷题记录/数论题记录.md",
-            "mode": "preview"
+            "mode": "source"
           }
         },
         "group": "94c053001f6c3d6c"
@@ -101,6 +101,9 @@
   },
   "active": "8d4e8044d1a8f177",
   "lastOpenFiles": [
-    "刷题记录/数论题记录.md"
+    "刷题记录/数论题记录.md",
+    "刷题记录/杂题记录.md",
+    "产物/字符串分享.md",
+    "产物/串串题分享.pdf"
   ]
 }
