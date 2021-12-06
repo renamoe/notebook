@@ -1,0 +1,106 @@
+{
+  "main": {
+    "id": "4f6ab97b032fb109",
+    "type": "split",
+    "children": [
+      {
+        "id": "8d4e8044d1a8f177",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "刷题记录/数论题记录.md",
+            "mode": "source"
+          }
+        },
+        "group": "94c053001f6c3d6c"
+      },
+      {
+        "id": "260690053a7ec647",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "刷题记录/数论题记录.md",
+            "mode": "preview"
+          }
+        },
+        "group": "94c053001f6c3d6c"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "536e63e46e2c7fc0",
+    "type": "split",
+    "children": [
+      {
+        "id": "1203cfec95440e04",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "767c7288a06da051",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "1d85c92697f936c6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 177
+  },
+  "right": {
+    "id": "ba4f6c779cd19b15",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e5a884d793cb5c0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c3200ae3d09a99b1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "刷题记录/数论题记录.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "8d4e8044d1a8f177",
+  "lastOpenFiles": [
+    "刷题记录/数论题记录.md"
+  ]
+}
