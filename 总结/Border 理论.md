@@ -15,8 +15,9 @@ Border：前缀 $S[0,m)$ 满足 $S[0,m)=S[n-m,n)$ ；
 ### 定理 1
 
 若 $Border(S)$ 表示 $S$ 所有 Border 的集合，$Border(S)_{\max}$ 表示其最长 Border，那么
+
 $$
-Border(S)=\{Border(S)_\max\}\cup Border(Border(S)_\max)
+Border(S)=\{Border(S)_{\max}\}\cup Border(Border(S)_{\max})
 $$
 
 ---
