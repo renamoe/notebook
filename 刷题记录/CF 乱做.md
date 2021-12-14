@@ -132,3 +132,23 @@ $$
 
 [submission(0)](https://codeforces.com/contest/1574/submission/136115206)
 
+## CF468E. Permanent
+
+[link](https://codeforces.com/contest/468/problem/E)
+
+积和式没有多项式复杂度解法，考虑其组合意义：$2n$ 个点的二分图完美匹配方案数。
+
+将所有点权 $-1$，只考虑特殊的 $k$ 条边的方案数，假设匹配 $c$ 条，剩下的随意匹配贡献为 $(n-c)!$。
+
+$k$ 很小考虑暴力做法，首先每个连通块分别考虑，然后背包合并。这样一个连通块里 $k$ 条边至多影响 $k+1$ 个点。设有 $n$ 个点、$m$ 条边，有两种做法：
+
+- 取较少的一侧状压，在另一侧 DP，复杂度 $\mathcal O(2^{\frac n 2}(\frac n 2 + m))$；
+- 取一棵生成树，枚举 $m-(n-1)$ 条非树边的匹配情况，在树上背包 DP，复杂度 $\mathcal O(2^{m-n}(n^2+m))$；
+
+都过不去，考虑阈值法，$n\le \frac 23 m$ 时使用第一种，否则使用第二种，总复杂度 $\mathcal O(2^{\frac k 3}k^2)$。
+
+有点难写。
+
+[submission(4)](https://codeforces.com/contest/468/submission/139132972)
+
+更为好写的是只用第一种方法，设 $f(i,j,S)$ 表示考虑左侧前 $i$ 个点，匹配了 $j$ 条边，右侧已经用了 $S$ 这些点的方案数，而之后一定不会用到的右侧点就不用记下来。提前将点集排序或者打乱可以防止被卡。[别人的实现。](https://codeforces.com/contest/468/submission/120850439)
