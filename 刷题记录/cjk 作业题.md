@@ -83,3 +83,21 @@ $$
 对行建线段树，每个节点代表区间内若干行形成的矩形。合并的时候计算跨过分界线的矩形的贡献，需要维护矩形两侧向内延伸的深度，然后单调栈计算。$\mathcal O(qm\log n)$。
 
 [submission(1)](https://loj.ac/s/1325757)
+
+## S2OJ#1188. 基因改造计划
+
+[link](https://sjzezoj.com/problem/1188)
+
+类似 [THUSC2016]成绩单 的挖串 DP。
+
+先把所有模式串插入 trie 树。
+
+区间 DP 内套子序列 DP，设 $g(l,r)$ 为区间 $[l,r]$ 挖下来的最大价值；$f(l,r,p)$ 表示区间 $[l,r]$ 最后一个字符所在子序列在 trie 树节点编号为 $p$，的最大价值。
+
+$f$ 枚举子序列上一个位置进行转移，代价为 $g$。
+
+最后再 DP 哪些段是会被挖的，就是最终答案。
+
+复杂度 $\mathcal O(n^3m)$，但是有 $\frac 18$ 的常数，可以 AC。
+
+[code(0)](https://gitee.com/renamoe/pastebin/blob/master/S2OJ1188.cpp)
