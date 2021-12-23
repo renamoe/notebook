@@ -222,3 +222,37 @@ $$
 
 [submission](https://atcoder.jp/contests/arc102/submissions/28030809)
 
+## AGC028D - Chords
+
+[link](https://atcoder.jp/contests/agc028/tasks/agc028_d)
+
+计数所有方案的连通块个数，有两种方式：
+
+- 一种是同时维护所有方案连通块个数的 $0$ 次和和 $1$ 次和，问题在于 $0$ 次和（方案数）并不好计算（我只 yy 出了 $\mathcal O(n^4)$ 做法，并且难以处理给出的定边）。
+- 另一种方式是有意地重复计算每个方案，在每个连通块处统计一次所在方案。或者理解为计算贡献。
+
+从 $1,2n$ 处断开，一个方案的所有连通块，只存在并列或包含的关系。一个连通块的贡献，在连通块点集的编号最小点和编号最大点组成点对 $(l,r)$ 处统计。
+
+记 $f(l,r)$ 表示只考虑区间 $[l,r]$ 内所有点，$l,r$ 连通的方案数。$l,r$ 连通的限制，用容斥处理，枚举 $l$ 所在连通块的最大编号，$f(l,r)$ 可以递归地表示。
+
+那么 $f(l,r)$ 乘上 $[l,r]$ 以外随意连的方案数，就是包含连通块 $(l,r)$ 的方案数。
+
+复杂度 $\mathcal O(n^3)$。
+
+将来的自己没看懂的话，想一想方案、连通块、点对之间的映射关系。
+
+[submission(0)](https://atcoder.jp/contests/agc028/submissions/28077775)
+
+## ARC101E - Ribbons on Tree
+
+[link](https://atcoder.jp/contests/arc101/tasks/arc101_c)
+
+容斥，钦定一个边集不被染色，那么树会分裂成若干小连通块，每个小连通块随意匹配。
+
+每个不被染色的边贡献 $-1$ 的容斥系数，树形 DP，记 $f(u,i)$ 表示 $u$ 子树中，$u$ 所在连通块大小为 $i$，$u$ 所在连通块以外的贡献。
+
+转移就是树上背包的合并，同时考虑一下是否形成新的连通块。
+
+复杂度 $\mathcal O(n^2)$。
+
+[submission(1)](https://atcoder.jp/contests/arc101/submissions/28075967)
