@@ -122,3 +122,74 @@ $f$ 枚举子序列上一个位置进行转移，代价为 $g$。
 
 对于多组询问，考虑把 $m=1\dots 100$ 的 $g(i,\cdot)$ 都处理出来，记为 $f(m,i)$。每次询问排列一下这些数就好了。
 
+## S2OJ#1181. 创造题目
+
+然后 $j$ 转移到 $i$ 的条件为
+
+$$
+\max_{j< k\le i}d_k\le i-j\le \min_{j< k\le i}u_k
+$$
+
+考虑 CDQ 分治，设 $\mathrm{su}_i$ 为 $i$ 到 $\mathrm{mid}$ 的前/后缀 $\min$，$\mathrm{sd}_i$ 为 $i$ 到 $\mathrm{mid}$ 的前/后缀 $\max$，可以得到
+
+$$
+\begin{cases}
+j+\mathrm{sd}_j\le i\le j+\mathrm{su}_j\\
+i-\mathrm{su}_i\le j\le i-\mathrm{sd}_i
+\end{cases}
+$$
+
+二维偏序解决，总复杂度 $\mathcal O(n\log^2n)$。
+
+[code(0)](https://gitee.com/renamoe/pastebin/blob/master/S2OJ1181.cpp)
+
+## S2OJ#1183. 分组
+
+设两组集合为 $S,T$，$U=S\cup T$。
+
+$$
+\sum_{i\in S}r_i-\sum_{i\in T}l_i=\left(\sum_{i\in S}(l_i+r_i)\right)-\sum_{i\in U}l_i
+$$
+
+那么做背包即可得到所有可能的分组情况。需要 $\texttt{std::bitset<>}$ 优化。
+
+注意是最差情况，更新答案时 $\sum_{i\in S}r_i-\sum_{i\in T}l_i$ 和 $\sum_{i\in T}r_i-\sum_{i\in S}l_i$ 要取 $\max$。
+
+## S2OJ#1185. 基因改造问题
+
+一个答案串可能对应多个划分方案，考虑在从前往后尽量让每段的右端点靠后的方案处统计。
+
+子串匹配可以用 SAM 的自动机结构，SAM 上每个节点 $u$ 若 $\mathrm{trans}(u,c)=\mathrm{NULL}$，那么令其指向下一个串的 $\mathrm{trans}(\mathrm{root},c)$。然后在新的自动机上 DP 即可。
+
+## S2OJ#1184. 攻城机变
+
+~~题面不知道被谁改的没法看了。~~ 应该是攻者为 Z，御者为 W。 
+
+首先得到的性质是：W 不会是预先设阵，应当是 W 和 Z 交替操作，因为这样 W 可以让 Z 多次折返；每一行，W 设墙的位置一定是一个区间，比较显然。
+
+区间 DP 记 $f_i(l,r,0/1)$ 表示到第 $i$ 行，Z 已经走过的位置为区间 $[l,r]$，位置在 $l$ 或者 $r$ 的答案。
+
+每次 W 会考虑 Z 所在位置上方是否设墙，取 $\max$；对于每一种情况，Z 会考虑向左、右、上走，取 $\min$。
+
+记忆化搜索实现比较方便，复杂度 $\mathcal O(nm^2)$。
+
+## S2OJ#1190. 爱如摩天大楼
+
+从后往前（从大到小）放会更好计算，每次只会影响第一段。
+
+DP 设 $f(i,j,k)$ 表示从后往前放到第 $i$ 个数，第一段颜色为 $j$，已经产生了 $k$ 段的方案数。转移就是考虑第 $i$ 个数是否放在最前面，
+
+$$
+f(i,j,k)\gets \begin{cases}
+(n-i)\cdot f(i+1,j,k) & j\neq c_i\\
+(n-i+1)\cdot f(i+1,j,k)+\sum_{j'\neq c_i}f(i+1,j',k-1) & j=c_i
+\end{cases}
+$$
+
+转移大部分地方是没有什么特殊变化的，设 $F(i,j,k)=\dfrac{f(i,j,k)}{(n-i)!}$，改写转移方程，
+
+$$
+F(i,j,k)\gets F(i+1,j,k)+[j=c_i]\left(F(i+1,j,k)+\sum_{j'\neq c_i}F(i+1,j',k-1)\right)
+$$
+
+另外维护一下 $\sum_j F(i,j,k)$ 那么每次从 $i+1$ 转移到 $i$ 只需要修改 $\mathcal O(k)$ 个位置。复杂度 $\mathcal O(nk)$。
