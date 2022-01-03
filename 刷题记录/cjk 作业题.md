@@ -143,6 +143,25 @@ $$
 
 [code(0)](https://gitee.com/renamoe/pastebin/blob/master/S2OJ1181.cpp)
 
+
+## UOj#22. 【UR #1】外星人
+
+[link](https://uoj.ac/problem/22)
+
+操作序列存在 $a_i<a_j$，则 $a_j$ 无用。将 $a_i$ 从大到小排序，设 $f(i,j)$ 表示最小有用点为 $i$，$x=j$ 时的方案数，枚举下一个有用点 $k$ 转移，同时将中间的无用点排列在 $k$ 后面。复杂度 $\mathcal O(n^2x)$。
+
+根据取模的性质，当 $x\to x'$ 时，$(x',x]$ 里的点都会变成无用点，$[1,x']$ 的点可能成为下一个有用点。意味着只需要记录 $j$ 即可，转移时将 $(j,j']$ 的无用点排列。复杂度 $\mathcal O(nx)$。
+
+[submission(1)](https://uoj.ac/submission/522451)
+
+## S2OJ#1178. 星际旅行
+
+考虑计算每一段 $[i,i+1)$ 的答案，此时所有物品的概率可以写成关于纵坐标 $y$ 的多项式。做背包得到取 $0\dots n$ 个物品的概率的多项式，然后积分即可。
+
+出于精度需求，要开 `long double`。
+
+[code(1)](https://gitee.com/renamoe/pastebin/blob/master/S2OJ1178.cpp)
+
 ## S2OJ#1183. 分组
 
 设两组集合为 $S,T$，$U=S\cup T$。
