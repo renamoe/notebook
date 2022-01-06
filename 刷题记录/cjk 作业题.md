@@ -67,3 +67,41 @@ $\mathcal O(n^2+np)$。
 发现更新答案时 $\ge$ 写成 $>$ 一直过不去，原因应该是：由贪心可得，操作过程中，较小数区间操作，较大数为单个操作，每次转移的区间长度不会大于上一次转移的区间长度。DP 后面过程中过多长度为 $1$ 的区间影响精度，$\texttt{double}$ 类型的精度已经无法表示。操作次数更多更优，人为地取 $\min(k,n-1)$ 次即可。
 
 [submission($+\infty$)](https://loj.ac/s/1337418)
+
+## ARC066F. Contest with Drinks Hard
+
+[link](https://atcoder.jp/contests/arc066/tasks/arc066_d)
+
+没有询问的话就是简单的斜率优化。
+
+将独立的单点修改 $x$，转化为求强制选 $x$ 和强制不选 $x$ 的答案，那么修改的代价也就好附上去了。
+
+强制不选的答案，就是前后缀答案之和，预处理。
+
+强制选的答案，考虑分治，仍然是斜率优化，左右分别维护凸壳，栈式插入和撤销左右两侧之间的贡献。复杂度 $\mathcal O(n\log n)$。
+
+[submission(3)](https://atcoder.jp/contests/arc066/submissions/28349320)
+
+## CF671D. Roads in Yusland
+
+[link](https://codeforces.com/contest/671/problem/D)
+
+记 $f(u,d)$ 表示覆盖 $u$ 子树并且最高覆盖的祖先高度为 $d$ 的最小代价。
+
+转移时 $u$ 从 $v\in \mathrm{son}(u)$ 中挑选一个儿子的子树覆盖到 $\mathrm{fa}(u)$ 及以上，其余只需要覆盖自身。
+
+用可并堆维护 $f(u,\cdot)$，支持取最小值、整体加、合并堆。过程中不合法的点不管，在取 top 的时候扔掉即可。复杂度 $\mathcal O(n\log m)$。
+
+[submission(2)](https://codeforces.com/contest/671/submission/141817998)
+
+## Luogu P5992 \[PA2015\]Rozstaw szyn
+
+[link](https://www.luogu.com.cn/problem/P5992)
+
+和 烟花表演 类似，$f_u(i)$ 表示 $u$ 子树中 $u$ 值为 $i$ 时的最小代价和，这是一个下凸壳。
+
+从儿子 $v$ 转移到 $u$ 时为 $f_v$ 凸壳与 $|i-j|$ 绝对值函数的闵可夫斯基和，然后所有儿子求和。闵可夫斯基和后只剩下斜率为 $-1,0,1$ 的部分，那么只需要记录斜率为 $0$ 的线段两个端点。
+
+[code(0)](https://gitee.com/renamoe/pastebin/blob/master/LuoguP5992.cpp)
+
+
