@@ -256,3 +256,65 @@ $$
 复杂度 $\mathcal O(n^2)$。
 
 [submission(1)](https://atcoder.jp/contests/arc101/submissions/28075967)
+
+
+## AGC027E. ABBreviate
+
+[link](https://atcoder.jp/contests/agc027/tasks/agc027_e)
+
+令 $\texttt a\to 1,\texttt b\to 2$，$f(S)$ 为字符串 $S$ 各字符之和 $\bmod 3$。
+
+字符串串 $S$ 能够变成字符 $c$ 的条件为两者之一：
+
+- $S=c$；
+- $f(S)=f(c)$ 并且 $S$ 中存在相邻相同的一对字符。
+
+题目转化为，统计字符串 $T$ 的数量，满足 $S$ 划分成 $|T|$ 部分后，每个部分能够变成 $T$ 中的对应字符。
+
+从左到右贪心地划分，每次取尽量短的合法子段，记为 $A_{1\dots |T|}$。最后会剩下一部分，记为 $R$。
+
+该划分合法地条件是 $f(R)=0$，证明：
+
+- $A_{|T|}+R$ 中存在相邻相同的一对字符，则可以并入 $A_{|T|}$；
+- 否则 $A_{|T|}+R$ 一定形如 $\texttt{ababababa\dots}$，将 $A_{|T|}$ 改为 $R$ 最后一个字符，归纳为剩余部分 $R'$ 与 $A_{|T|-1}$ 的子问题。
+
+那么可以 DP，额外记录 $\mathrm{nxt}_{\texttt a/\texttt b}(i)$ 表示 $i$ 开头最小的能够变成 $\texttt a/\texttt b$ 的字段后面一位是谁。
+
+注意特判整串无法操作的情况。
+
+[submission(0)](https://atcoder.jp/contests/agc027/submissions/28364375)
+
+## AGC010D. Decrementing
+
+[link](https://atcoder.jp/contests/agc010/tasks/agc010_d)
+
+终止状态为全 $1$，那么关注 $\sum_i(a_i-1)$ 的奇偶性。
+
+- 如果存在 $1$，后续回合 $\gcd$ 都为 $1$，胜负取决于 $\sum_i(a_i-1)$ 的奇偶性。
+- 如果有奇数个偶数，先手一定是操作一个偶数，无论后手如何应对，先手都能保持 $\sum_i(a_i-1)$ 为偶数。先手必胜。
+- 如果有偶数个偶数：
+  - 如果有大于 $1$ 个奇数，那么无论如何操作，后手都是必胜态。
+  - 如果有 $1$ 个奇数，先手只能操作这个奇数，$\gcd$ 变为偶数，除 $\gcd$ 会改变很多数的奇偶性，递归下去处理（不超过 $\log$ 次）。
+  - 由于每操作一轮后所有数互质，不可能全是偶数。
+
+[submission(1)](https://atcoder.jp/contests/agc010/submissions/28369369)
+
+## AGC024E. Sequence Growing Hard
+
+[link](https://atcoder.jp/contests/agc024/tasks/agc024_e)
+
+字典序的限制可以描述为，每次在一个数前面插入一个严格比它大的数。
+
+加入一个虚点表示最开始空序列里的数。给每个点 $\mathrm{id}_i,\mathrm{val}_i$ 表示插入的顺序、权值。每次在一个数前面插入一个严格比它大的数，可以描述为树形结构，即插入一个编号最大的点到某一个点下面。可以发现这种有根树和原序列的序列构成双射。
+
+考虑 DP，设 $f(n,x)$ 表示 $n$ 个点的有根树，根（$1$ 号点）的权值为 $x$ 的方案数。$2$ 号点一定是根直接的儿子，将树划分成两部分，递归然后分配标号：
+
+$$
+f(n,x)\gets \sum_{i=1}^{n-1}\left(\sum_{y> x}f(i,y)\right)\times f(n-i,x)\times\binom{n-2}{i-1}
+$$
+
+后缀和优化即可 $\mathcal O(n^2K)$。
+
+[submission(0)](https://atcoder.jp/contests/agc024/submissions/28373255)
+
+
