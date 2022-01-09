@@ -318,3 +318,21 @@ $$
 [submission(0)](https://atcoder.jp/contests/agc024/submissions/28373255)
 
 
+## AGC023E. Inversions
+
+[link](https://atcoder.jp/contests/agc023/tasks/agc023_e)
+
+考虑每个点对 $(i,j)$ 的贡献。
+
+如果 $a_i=a_j$，发现 $(i,j)$ 构成逆序对的方案数是总方案数的一半。
+
+计算总方案数，可以从大往小放数。设 $\mathrm{cnt}(k)$ 表示 $\left(\sum_i[a_i\ge k]\right)-(n-k)$，那么从方案数就是 $S=\prod_{i=1}^n\mathrm{cnt}(i)$。
+
+如果 $a_i< a_j$，不妨令 $a_j\gets a_i$，贡献为修改后的总方案数的一半。这样的修改产生的影响是，$\forall k\in [i+1,j],\mathrm{cnt}(k)\gets \mathrm{cnt}(k)-1$。设 $\displaystyle D(k)=\prod_{i=1}^k\frac{\mathrm{cnt}(k)-1}{\mathrm{cnt}(k)}$，修改后的方案数可以表示为 $S\times \dfrac{D(j)}{D(i)}$。
+
+那么可以和二维偏序一样用树状数组维护。需要注意的是 $\mathrm{cnt}(k)-1$ 可能为 $0$，可以记录乘积中 $0$ 的个数，由于 $0$ 的个数在前缀积中是单调的，$\frac{D(j)}{D(i)}\neq 0$ 当且仅当 $D(i),D(j)$ 包含 $0$ 的个数相同，每次查询一个区间即可。
+
+如果 $a_i>a_j$，可以用总方案数减去构成顺序对的方案数，就和上面一样了。
+
+[submission(0)](https://atcoder.jp/contests/agc023/submissions/28425738)
+
