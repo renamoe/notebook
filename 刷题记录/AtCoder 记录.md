@@ -334,5 +334,50 @@ $$
 
 如果 $a_i>a_j$，可以用总方案数减去构成顺序对的方案数，就和上面一样了。
 
-[submission(0)](https://atcoder.jp/contests/agc023/submissions/28425738)
+[submission(0)](https://atcoder.jp/contests/agc023/submissions/28444734)
+
+## AGC022F. Checkers
+
+[link](https://atcoder.jp/contests/agc022/tasks/agc022_f)
+
+每个点的坐标可以表示为 $\sum_ia_ix^{100i}$，那么点 $x$ 坐标用 $n$ 元组 $P_x=(a_1,a_2,\dots a_n)$ 表示。
+
+可以发现任意时刻 $a_i=2^k,k\in[0,n-1]$，并且 $\sum_i a_i=1$。
+
+对称操作就是 $P_x\gets 2P_y-P_x$，如果此时 $a_i$ 在 $P_x$ 中非 $0$， $a_j$ 在 $P_y$ 中非 $0$，那么操作两个集合后，$a_i,a_j$ 在后续一直保持 $-2$ 倍的关系。
+
+因此得到坐标 $P=(a_1,a_2,\dots a_n)$ 合法的条件为：每次贪心地取最高次幂 $k+1$，
+
+- $2^{k+1},-2^k$ 合并为 $2^k$；
+- $-2^{k+1},2^k$ 合并为 $-2^k$；
+
+直至最后只剩下 $1$。
+
+那么可以 DP，$f(i,a,b)$ 表示放了 $i$ 个数，当前第 $k$ 次幂 $a$ 个 $2^k$、$b$ 个 $-2^k$（注意是次数 $\ge k$ 的数合并后）。
+
+转移时每次枚举 $k-1$ 次有 $x$ 个 $2^{k-1}$、$y$ 个 $-2^{k-1}$，合并后剩余 $x-b+a$ 个 $2^{k-1}$、$y-a+b$ 个 $-2^{k-1}$。还需要分配标号。
+
+复杂度 $\mathcal O(n^5)$。
+
+[submission(0)](https://atcoder.jp/contests/agc022/submissions/28442665)
+
+## AGC021F. Trinity
+
+[link](https://atcoder.jp/contests/agc021/tasks/agc021_f)
+
+DP 记录 $f(i,j)$ 前 $i$ 列有 $j$ 行已经占有。转移时枚举下一列最上面选的格子和最下面选的格子，然后再中间枚举新增占有的行，不过做不了。
+
+考虑枚举新增占有的行数 $k$，
+
+- $k=0$，只要在已占有的行中选取上下边界，转移系数为 $\binom{j}{2}+j+1$；
+
+- $k> 0$，可以转化为排列 $j$ 个白球和 $k$ 个黑球，然后在最左侧黑球以左选取至多一个白球染红、在最右侧黑球以右选取至多一个白球染红。
+  
+  在左端和右端各新加一个灰球，可以将“至多一个”转化为“恰好一个”。容易发现等价于排列 $j$ 个白球和 $k+2$ 个黑球，因此转移系数为 $\binom{j+k+2}{k+2}$。
+
+  此部分可以 NTT 优化至 $\mathcal O(n\log n)$。
+
+总复杂度 $\mathcal O(mn\log n)$。
+
+[submission(0)](https://atcoder.jp/contests/agc021/submissions/28450392)
 
