@@ -87,3 +87,24 @@ $$
 
 [submission(1)](https://codeforces.com/gym/103202/submission/143052650)
 
+## gym103202M. United in Stormwind
+
+[link](https://codeforces.com/gym/103202/problem/M)
+
+每个人的答案用二进制数表示，那么相同的一对就是异或值为 $0$ 的一对。
+
+FWT 做 xor 卷积算出异或值为 $k$ 的对数，然后考虑 $k$ 的贡献，就是再做一下超集和。
+
+[submission(1)](https://codeforces.com/gym/103202/submission/143071670)
+
+## gym102992J. Just Another Game of Stones
+
+[link](https://codeforces.com/gym/102992/problem/J)
+
+每次查询时，设 $s$ 为区间 $[l,r]$ 和 $x$ 的异或和，那么先手获胜的条件为操作某一个数 $k\to k-\Delta$，使得 $s\oplus k\oplus (k-\Delta)=0$，简单讨论一下就是 $k$ 需要包含 $\mathrm{highbit}(s)$ 这一位。
+
+修改操作使用 Segment Tree Beats，同时维护区间异或和、每一位包含这一位的个数。
+
+[submission(1)](https://codeforces.com/gym/102992/submission/143089157)
+
+
