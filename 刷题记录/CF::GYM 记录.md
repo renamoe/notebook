@@ -38,4 +38,52 @@
 
 一定可以找到一个重合点，满足左边 $k$ 划分和右边 $k+1$ 划分拼起来总共是 $m$ 段。
 
+## gym103119B. Boring Problem
+
+[link](https://codeforces.com/gym/103119/problem/B)
+
+对 $\{T_i\}$ 建出 AC 自动机，DP $f_u$ 表示 $u$ 节点到达某个终止节点的期望步数，
+
+$$
+f_u=1+\sum_{c\in\Sigma}p_cf_{\mathrm{ch}(u,c)}
+$$
+
+高斯消元可以做大 $\mathcal O((nm)^3)$。
+
+考虑主元法，将 AC 自动机的根设为主元，对于 $u$，
+
+- 如果 $u$ 有 $1$ 个 trie 树上的儿子 $v$，那么 $f_v$ 可以用 $f_u$ 和 $u$ 的其他转移后继推出；
+- 如果 $u$ 有多于 $1$ 个 trie 树上的儿子，不妨把这些儿子也设为主元。
+
+由于 $n$ 个串 trie 树的分叉点个数是 $\mathcal O(n)$ 的，所以主元个数也是 $\mathcal O(n)$ 的。
+
+然后用所有分叉点和叶子节点的列出方程，这样方程数恰好是主元个数，高斯消元即可，$\mathcal O(n^3)$。
+
+[submission(1)](https://codeforces.com/gym/103119/submission/143047350)
+
+## gym103119I. Nim Cheater
+
+[link](https://codeforces.com/gym/103119/problem/I)
+
+可以 DP $f(i,j)$ 表示前 $i$ 堆石子使得异或和为 $j$ 的最小代价，时间空间复杂度都为 $\mathcal O(na)$，空间不行。
+
+将询问离线建出树形结构，我们发现为了回溯，需要记录当前点所有祖先的状态。但是如果当前点是父亲最后一个访问的儿子，则不需要留下父亲的状态。
+
+那么重链剖分，重儿子最后访问，需要记录的祖先个数就是 $\mathcal O(\log n)$ 个了，空间复杂度 $\mathcal O(a\log n)$。
+
+[submission(2)](https://codeforces.com/gym/103119/submission/143049689)
+
+## gym103202J. Descent of Dragons 
+
+[link](https://codeforces.com/gym/103202/problem/J)
+
+记录 $f(i,x)$ 表示 $i$ 位置是否 $\ge x$。
+
+每个权值开一个线段树，记录包含的下标集合。那么每次修改操作就是 $x$ 线段树到 $x+1$ 线段树的区间复制，用可持久化线段树解决。
+
+查询可以二分。复杂度 $\mathcal O(q\log q\log n)$。
+
+注意复制 $v\to u$ 时，$u$ 节点原来的信息不能被覆盖。
+
+[submission(1)](https://codeforces.com/gym/103202/submission/143052650)
 
