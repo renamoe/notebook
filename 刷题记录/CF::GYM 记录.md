@@ -107,4 +107,55 @@ FWT 做 xor 卷积算出异或值为 $k$ 的对数，然后考虑 $k$ 的贡献�
 
 [submission(1)](https://codeforces.com/gym/102992/submission/143089157)
 
+## gym103081J. Daisy's Mazes
+
+[link](https://codeforces.com/gym/103081/problem/J)
+
+发现经过一段括号序列是没有花费的（若每一步都合法）。
+
+加入 $n-1$ 个虚点，和起点排在一起，第 $i$ 个向第 $i-1$ 个连所有颜色的边，虚点到起点的路径表示初始栈；终点向自身连所有颜色的边，消去剩余栈。
+
+此时问题转化为以某个虚点为起点，是否能经过一段括号序列到达终点。
+
+DP 设 $f(c,u,v)$ 表示当前栈顶为 $c$ 时，$u$ 是否能到达 $v$。转移时考虑拼接两个括号序列、在外面嵌套一层。
+
+因为顺序不好确定，可以 DFS 来递推。
+
+[submission(1)](https://codeforces.com/gym/103081/submission/143510075)
+
+## gym102984J. Setting Maps
+
+[link](https://codeforces.com/gym/102984/problem/J)
+
+考虑网络流做法。设 $d_u,e_u$ 表示 $u$ 点（不包含 / 包含）之前的所有路径上最少关键点数。有如下限制：
+
+- $d_u\le e_u\le d_u+1$，若 $e_u=d_u+1$ 则有 $c_u$ 的代价；
+- 每条边 $(u,v)$，$e_u\ge d_v$；
+
+转化为最小割模型，将每个变量拆成 $k+1$ 个点，用 $(i,i+1,0)$ 边连起来，割代表选。
+
+对于每个 $x\le y$ 的限制，连边 $(x,y,+\infty)$（切糕）。
+
+[submission(2)](https://codeforces.com/gym/102984/submission/143584478)
+
+## gym103470E. Paimon Segment Tree
+
+[link](https://codeforces.com/gym/103470/problem/E)
+
+先询问离线差分，否则将下面的操作改成可持久化会 MLE。
+
+将每次修改拆成 $([0,l-1],0),([l,r],x),([r+1,n],x)$ 三个修改，那么用每个数记录 $[1,a_i,a_i^2,\sum a_i^2]$ 即可用矩阵转移。用线段树维护。
+
+$4\times 4$ 的矩阵有点大，但是上三角矩阵相乘还是上三角矩阵，剪枝后常数 $\frac 16$。
+
+[submission(5)](https://codeforces.com/gym/103470/submission/143619181)
+
+## gym103447L. Karshilov's Matching Problem
+
+[link](https://codeforces.com/gym/103447/problem/L)
+
+用栈取维护当前串的每个同色连续段，一段同色连续段的价值可以在 AC 自动机上倍增来求。
+
+[submission(1)](https://codeforces.com/gym/103447/submission/143627204)
+
 
