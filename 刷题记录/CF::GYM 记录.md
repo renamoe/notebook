@@ -170,4 +170,16 @@ $4\times 4$ 的矩阵有点大，但是上三角矩阵相乘还是上三角矩�
 
 [submission(1)](https://codeforces.com/gym/103409/submission/143792882)
 
+## gym103470G. Paimon's Tree
+
+[link](https://codeforces.com/gym/103470/problem/G)
+
+考虑某一状态下，我们确定一个链为最终答案的子段，然后不断扩展。那么这条链中间所有点的子树里没有填的边，都是可以用来放置排列中无用数的“垃圾桶”。
+
+为了确定扩展方向，状态里记录 $x,y$ 表示还之后要扩展但还没有填的两个端点，预处理一下每个状态的“垃圾桶”的大小，可以 $\mathcal O(n^3)$ DP。
+
+如果端点 $x,y$ 扩展到了叶子，状态不好表示。可以状态里多记录两个 $0/1$ 表示端点是否到达叶子。
+
+[submission(0)](https://codeforces.com/gym/103470/submission/144315181)
+
 
