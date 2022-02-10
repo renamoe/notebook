@@ -40,3 +40,26 @@ $T$ 集合需要满足：
 
 [submission(0)](https://atcoder.jp/contests/agc016/submissions/29185134)
 
+## CF1530F. Bingo
+
+[link](https://codeforces.com/contest/1530/problem/F)
+
+先容斥对角线，强制选 $1$ 的将概率改为 $1$。然后枚举行的子集容斥，剩下的列就是要求每列至少有一个 $0$，记录全 $1$ 概率补集转化一下。复杂度 $\mathcal O(2^{n+2}n)$。
+
+[submission(0)](https://codeforces.com/contest/1530/submission/145806869)
+
+## CF1523F. Favorite Game
+
+[link](https://codeforces.com/contest/1523/problem/F)
+
+正确的策略一定是形如：`tower -> task -> task -> tower -> tower -> task ...`
+
+状压已经得到的 tower 集合，用一些交换 key 和 value 的技巧，可以得到如下状态：
+
+- $f(S,i)$ 表示已得到 $S$ 集合的 tower，完成了 $i$ 个 task 的最少时间；
+- $g(S,i)$ 表示已得到 $S$ 集合的 tower，当前在第 $i$ 个 task，最多完成了的 task 数量。
+
+预处理一些距离，然后可以按状态中 $S,i$ 的变化关系进行转移。$\mathcal O(2^nm^2)$。
+
+[submission(2)](https://codeforces.com/contest/1523/submission/145855003)
+
