@@ -63,3 +63,15 @@ $T$ 集合需要满足：
 
 [submission(2)](https://codeforces.com/contest/1523/submission/145855003)
 
+## CF1519F. Chests and Keys
+
+[link](https://codeforces.com/contest/1519/problem/F)
+
+如果确定了上锁的方案，Bob 的最少代价可以建最小割模型求解，Bob 的收益就是 $\sum_ia_i-\mathrm{mincost}$。
+
+由于 $\mathrm{mincost}\le \sum_ia_i$，Alice 赢当且仅当最大流满流。
+
+考虑状压左侧所有边的流量，类似轮廓线 DP，记录 $f(i,j,S,r)$ 表示到右侧第 $i$ 个点，左侧第 $j$ 个点，左侧流量剩余状态 $S$，右侧第 $i$ 条边剩余流量 $r$，Alice 加边的最小代价。
+
+[submission(0)](https://codeforces.com/contest/1519/submission/145901219)
+
