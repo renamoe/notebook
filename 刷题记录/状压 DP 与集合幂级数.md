@@ -75,3 +75,36 @@ $T$ 集合需要满足：
 
 [submission(0)](https://codeforces.com/contest/1519/submission/145901219)
 
+## LOJ#154. 集合划分计数
+
+[link](https://loj.ac/p/154)
+
+给出多项式 $F$ 和集合幂级数 $G$，求
+
+$$
+[x^{U}]\sum_{i=0}^nf_i\frac{G^i}{i!}.
+$$
+
+也就是多项式复合集合幂级数模板，参照 EI 论文。
+
+![](https://s4.ax1x.com/2022/02/11/HasUY9.png)
+
+[submission(0)](https://loj.ac/s/1378180)
+
+## AGC043C. Giant Graph
+
+[link](https://atcoder.jp/contests/agc043/tasks/agc043_c)
+
+权值是 $10^18$ 的幂，一定是 $i+j+k$ 从大到小贪心选。
+
+所有边按小到大定向，一个点能选当且仅当其出边都未选。对应 DAG 上博弈的 SG 值为 $0$。
+
+可以看作三张图上三个棋子进行游戏，相互独立，则求
+
+$$
+\sum_{\mathrm{SG}(i)\oplus\mathrm{SG}(j)\oplus\mathrm{SG}(k)=0}K^{i+j+k}.
+$$
+
+FWT 进行异或卷积。
+
+[submission(0)](https://atcoder.jp/contests/agc043/submissions/29217461)
