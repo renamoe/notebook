@@ -95,7 +95,7 @@ $$
 
 [link](https://atcoder.jp/contests/agc043/tasks/agc043_c)
 
-权值是 $10^18$ 的幂，一定是 $i+j+k$ 从大到小贪心选。
+权值是 $10^{18}$ 的幂，一定是 $i+j+k$ 从大到小贪心选。
 
 所有边按小到大定向，一个点能选当且仅当其出边都未选。对应 DAG 上博弈的 SG 值为 $0$。
 
@@ -108,3 +108,38 @@ $$
 FWT 进行异或卷积。
 
 [submission(0)](https://atcoder.jp/contests/agc043/submissions/29217461)
+
+## LOJ#2340. 「WC2018」州区划分
+
+[link](https://loj.ac/p/2340)
+
+部分分：
+
+- $p=0$ 时就是求 $1+F+F^2+\dots$，复合或者求逆；
+- $p=1$ 时有结论：$\sum_{\text{排列 }p}\prod_i\frac{a_{p_i}}{\sum_{j=0}^ia_{p_j}}=1$，所以就是 $\exp(F)$。
+
+正解：
+
+考虑子集 DP，
+
+$$
+f_S=\sum_{T\subseteq S}f_{S\setminus T}\cdot \frac{w_{T}^p}{w_S^p},
+$$
+
+把 $w_S^p$ 提出来，就是半在线的子集卷积。
+
+子集卷积将子集大小放在第一维，按大小从小到大转移。$\mathcal O(2^nn^2)$。
+
+[submission(2)](https://loj.ac/s/1378382)
+
+## AGC024F. Simple Subsequence Problem
+
+[link](https://atcoder.jp/contests/agc024/tasks/agc024_f)
+
+设一个状态 $(S,T)$ 表示对应在某一个串上匹配时，当前匹配成功了 $S$，剩余部分为 $T$。所有串的所以状态放在一起，构成一个自动机。
+
+枚举 $S$ 下一个填 $0/1$，在 $T$ 上贪心匹配；或者直接结束，转移到 $(S,\varnothing)$。
+
+由于 $|S|+|T|$ 是 $\mathcal O(n)$ 的，记录分界点，可以做到 $\mathcal O(2^nn)$ DP。
+
+[submission(1)](https://atcoder.jp/contests/agc024/submissions/29222140)
