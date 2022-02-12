@@ -36,3 +36,16 @@
 
 [submission(5)](https://codeforces.com/contest/1149/submission/146017788)
 
+## CF1129D. Isolation
+
+[link](https://codeforces.com/contest/1129/problem/D)
+
+扫描线，从小到大枚举 $i$，给 $(\mathrm{last}(\mathrm{last}(i)),\mathrm{last}(i)]$ $-1$，$(\mathrm{last}(i),i]$ $+1$。
+
+每次转移 $f_{i+1}$ 时就是求 $0\dots i$ 中满足 $c_j\le k$ 的 $f_j$ 之和。
+
+分块，每个块维护一个桶。复杂度 $\mathcal O(n\sqrt n)$。
+
+由于每个块内 $c_i$ 之差至多 $\mathcal O(\text{块长})$，所以空间是 $\mathcal O(n)$。
+
+[submission(0)](https://codeforces.com/contest/1129/submission/146040296)
