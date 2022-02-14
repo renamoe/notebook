@@ -46,6 +46,26 @@
 
 分块，每个块维护一个桶。复杂度 $\mathcal O(n\sqrt n)$。
 
-由于每个块内 $c_i$ 之差至多 $\mathcal O(\text{块长})$，所以空间是 $\mathcal O(n)$。
+由于每个块内 $c_i$ 之差至多 $\mathcal O(\text{块长})$，所以空间是 $\mathcal O(n)$。原因考虑 $c$ 数组的差分中，每个位置只能是 $0$ 或 $1$。
 
 [submission(0)](https://codeforces.com/contest/1129/submission/146040296)
+
+## CF1039D. You Are Given a Tree
+
+[link](https://codeforces.com/contest/1039/problem/D)
+
+好像不是 DP。
+
+对于一个确定的 $k$，可以在树上贪心计算答案，子树内如果能形成合法链就贪心匹配，否则将最长链传至父亲。
+
+发现 $k$ 从小到大增长，答案变化的频率越来越慢。
+
+根号分治，小于阈值 $S$ 的可以暴力做；大于 $S$ 的有 $\mathcal O(\frac nS)$ 段，可以二分得到每一段具体长度。
+
+平衡一下可以做到 $\mathcal O(n\sqrt{n\log n})$。
+
+较为卡常，树上 dfs 需要预处理 dfs 序进行模拟。
+
+[submission(4)](https://codeforces.com/contest/1039/submission/146049086)
+
+
