@@ -70,7 +70,7 @@ $k=n-1$ 时，$n=4$ 是无解的，$n>4$ 却可以调整，凑出 $n-2$ 再凑�
 
 最优策略是：对于当前区间 $[l_i,r_i]$，找到最大的 $j$ 满足 $l_j\in [l_i,r_i]$，操作 $j$ 解决掉 $i+1\dots j-1$ 区间的右端点，和递归解决 $j$ 后面的区间；然后操作 $i$。这样的过程每次会遗漏一个。
 
-### D. Flipping Range
+### \*D. Flipping Range
 
 取 $B$ 集合的 $\gcd=g$，$B$ 集合能够表示的所有数，都是 $g$ 的倍数（辗转相除来得到 $\gcd$）。等价于每次操作 $g$。
 
@@ -80,4 +80,24 @@ $k=n-1$ 时，$n=4$ 是无解的，$n>4$ 却可以调整，凑出 $n-2$ 再凑�
 
 那么可以下标按 $\bmod g$ 分类进行 DP，$\mathcal O(n)$。
 
+## Codeforces Global Round 19
 
+[link](https://codeforces.com/contest/1637)
+
+### B. MEX and Array
+
+可以暴力 $\mathcal O(n^4)$ DP。观察到最优策略一定是每个数分一段，那么考虑每个数的贡献可以做到 $\mathcal O(n)$。
+
+### C. Andrew and Stones
+
+存在奇数的话，如果有大于 $1$ 个奇数并且不都为 $1$ 的话，可以奇数直接相互操作变为偶数。
+
+### D. Yet Another Minimization Problem
+
+拆开平方，操作能够影响的部分是 $a_i\sum_{j<i}a_j$ 和 $b_i\sum_{j<i}b_j$，DP 记录操作后 $a_i$ 的前缀和即可，$\mathcal O(n^2V)$。
+
+### \*E. Best Pair
+
+由于不同数的种类数是 $\mathcal O(\sqrt n)$ 的，枚举 $\mathrm{cnt}_x,\mathrm{cnt}_y$ 元素。
+
+按 $\mathrm{cnt}$ 分类后，枚举 $\mathrm{cnt}_x$ 集合的所有元素，再**从大到小**枚举 $\mathrm{cnt}_y$ 集合的元素，用 $\texttt{std::set<>}$ 跳过禁止点对。对于每个 $x$，查找到第一个未被禁止的 $y$ 即可退出。就可以做到 $\mathcal O(n\log m+m\log m)$。
