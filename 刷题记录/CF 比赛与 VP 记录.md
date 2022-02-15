@@ -101,3 +101,20 @@ $k=n-1$ 时，$n=4$ 是无解的，$n>4$ 却可以调整，凑出 $n-2$ 再凑�
 由于不同数的种类数是 $\mathcal O(\sqrt n)$ 的，枚举 $\mathrm{cnt}_x,\mathrm{cnt}_y$ 元素。
 
 按 $\mathrm{cnt}$ 分类后，枚举 $\mathrm{cnt}_x$ 集合的所有元素，再**从大到小**枚举 $\mathrm{cnt}_y$ 集合的元素，用 $\texttt{std::set<>}$ 跳过禁止点对。对于每个 $x$，查找到第一个未被禁止的 $y$ 即可退出。就可以做到 $\mathcal O(n\log m+m\log m)$。
+
+### \*F. Towers
+
+容易发现 towers 一定建在叶子上。
+
+取 $h_i$ 最大的点作为根，有两个叶子的 $e$ 值会 $\ge \max h_i$，那么每个点只需要考虑下方一侧的限制。可以树上贪心，每个点增加子树内最大的叶子。
+
+### \*G. Birthday
+
+可以组合出来的操作是：$(0,x)\to(x,x)\to(0,2x)$。
+
+考虑把所有数变为 $2$ 的幂，然后统一。
+
+取 $n$ 以内最大的 $k=2^t$，操作 $(k-i,k+i)$ 可以得到 $(2k,2i)$。然后会剩下一段 $\{1,2,3,\dots k-(n-k)-1\}$ 和一段 $\{2,4,6,\dots 2(n-k)\}$，变为递归的子问题。
+
+这样分治的操作次数是 $\mathcal T(n)=2\mathcal T(\frac n2)+\mathcal O(n)=\mathcal O(n\log n)$ 的。
+
