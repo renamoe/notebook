@@ -118,3 +118,32 @@ $k=n-1$ 时，$n=4$ 是无解的，$n>4$ 却可以调整，凑出 $n-2$ 再凑�
 
 这样分治的操作次数是 $\mathcal T(n)=2\mathcal T(\frac n2)+\mathcal O(n)=\mathcal O(n\log n)$ 的。
 
+### \*H. Minimize Inversions Number
+
+设 $d_i$ 表示只将 $i$ 移动至开头时，逆序对的变化量。若选取的子序列下标集合为 $q$，则排列 $p$ 的逆序对数变为
+$$
+\mathrm{inv}(p)+\sum_{j\in q}d_j+\mathrm{inv}(q)-\mathrm{sqt}(q),
+$$
+其中 $\mathrm{inv}(p),\mathrm{sqt}(p)$ 分别表示 $p$ 的逆序对、顺序对数。化简一下，本题需要最小化的是
+$$
+\sum_{i\in q}d_i+2\cdot \mathrm{inv}(q).
+$$
+然后有结论：对于 $q$ 集合中元素 $i$，若存在 $j$ 满足 $i<j,p_i>p_j$，则 $j\in q$。
+
+> 证明：
+>
+> 反证 + 调整。假设该结论不正确，取 $q$ 集合中 $|i-j|$ **最小**的一对 $(i,j)$ 满足 $i<j,p_i>p_j$ 并且 $i$ 选取而 $j$ 未选取。
+>
+> 考虑调整为 $i$ 不选取而 $j$ 选取，分类讨论各部分对答案变化量的贡献，有
+>
+> ![](https://s4.ax1x.com/2022/02/16/HW66fJ.png)
+>
+> 由于 $(i,j)$ 的最小性，红线划去部分不会出现，则答案一定不会变劣。
+>
+> 每次调整后选取的子序列的下标之和增加，调整法将在有限步内结束。
+
+此时问题转化为最小化，
+$$
+\sum_{i\in q}d_i+2\left(\sum_{i\in q}\sum_{j>i}[q_j<q_i]\right).
+$$
+可以 $\mathcal O(n\log n)$ 预处理，然后贪心解决。
